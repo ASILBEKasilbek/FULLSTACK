@@ -5,22 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yordamlar</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <script src="{% static 'js/script.js' %}"></script>
+    <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+    
 
 </head>
 <body>
     <canvas id="matrix"></canvas>
     <nav>
         <ul>
-            <li><a href="{% url 'main' %}">Home</a></li>
+            <li><a href="{% url 'main' %}" aria-current="page">Home</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
-            <li><a href="{% url 'services' %}">Services</a></li>
-            <li><a href="{% url 'yordamlar' %}" aria-current="page">Yordamlar</a></li>
-            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'yordamlar' %}">Yordamlar</a></li>
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+            {% endif %}
             <li>
                 {% if user.is_authenticated %}
-                    <p>Salom, {{ user.username }}!</p>
                     <a href="{% url 'logout' %}">Logout</a>
                 {% else %}
                     <a href="{% url 'login' %}">Login</a> |
@@ -30,56 +33,18 @@
         </ul>
     </nav>
 
-    
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+     <!-- home.html -->
+    <h2>Yaqinda hal bo‘lgan muammolar</h2>
+    <ul>
+        {% for req in solved %}
+            <li><strong>{{ req.user.username }}</strong> - {{ req.subject }} <br><i>{{ req.solution }}</i></li>
+        {% endfor %}
+    </ul>
 
-    <script>
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-        canvas.height = window.innerHeight;
-        canvas.width = window.innerWidth;
-        const chars = '01';
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = [];
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
-        function draw() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#0F0';
-            ctx.font = fontSize + 'px monospace';
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars.charAt(Math.floor(Math.random() * chars.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-        setInterval(draw, 33);
 
-        document.querySelectorAll('.faq-item h5').forEach(item => {
-            item.addEventListener('click', () => {
-                const faqItem = item.parentElement;
-                faqItem.classList.toggle('active');
-            });
-        });
-
-        function searchFAQs() {
-            const input = document.getElementById('searchInput').value.toLowerCase();
-            const faqs = document.querySelectorAll('.faq-item');
-            faqs.forEach(faq => {
-                const question = faq.querySelector('h5').textContent.toLowerCase();
-                const answer = faq.querySelector('p').textContent.toLowerCase();
-                if (question.includes(input) || answer.includes(input)) {
-                    faq.style.display = 'block';
-                } else {
-                    faq.style.display = 'none';
-                }
-            });
-        }
-    </script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

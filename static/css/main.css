@@ -1,13 +1,13 @@
-
+/* === Body and General === */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000;
     padding: 20px;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #000;
-    /* overflow: hidden; */
+    color: #0f0;
 }
+
+/* === Background Matrix Canvas === */
 canvas#matrix {
     position: fixed;
     top: 0;
@@ -16,40 +16,154 @@ canvas#matrix {
     height: 100%;
     z-index: -1;
 }
+
+/* === Navigation === */
+nav {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #0f0;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+nav ul li a,
+nav ul li p {
+    color: #0f0;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+nav ul li a:hover {
+    color: #6f6;
+    text-shadow: 0 0 5px #0f0;
+}
+
+/* === Typography === */
+h1 {
+    color: #0f0;
+    text-align: center;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px #0f0;
+}
+
+p {
+    text-align: left;
+    margin: 15px 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #0f0;
+    text-shadow: 0 0 4px #0f0;
+    background-color: rgba(0, 255, 0, 0.05);
+    padding: 10px 15px;
+    border-left: 3px solid #0f0;
+    border-radius: 4px;
+}
+
+/* === Search Bar === */
 .search-bar {
     max-width: 600px;
     margin: 30px auto;
 }
+
+.input-group input {
+    border: 2px solid #0f0;
+    background: #111;
+    color: #0f0;
+    padding: 10px;
+    transition: border 0.3s;
+}
+
+.input-group input::placeholder {
+    color: #6f6;
+}
+
+.input-group input:focus {
+    border-color: #6f6;
+    outline: none;
+}
+
+/* === Button Neon Style === */
+.btn {
+    color: #000;
+    background-color: #0f0;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 0 15px #0f0;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #1f1;
+    box-shadow: 0 0 20px #3f3;
+    color: #000;
+}
+
+/* === FAQ Items === */
 .faq-item {
     margin-bottom: 20px;
 }
+
 .faq-item h5 {
     cursor: pointer;
-    color: #007bff;
+    color: #0f0;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-shadow: 0 0 5px #0f0;
+    transition: color 0.3s ease;
 }
+
+.faq-item h5:hover {
+    color: #6f6;
+}
+
 .faq-item p {
     display: none;
+    color: #6f6;
+    padding-left: 10px;
+    padding-top: 5px;
+    background-color: rgba(0, 255, 0, 0.03);
+    border-left: 2px solid #0f0;
+    border-radius: 3px;
 }
+
 .faq-item.active p {
     display: block;
 }
-nav ul {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    list-style: none;
-}
-nav ul li {
-    margin: 0 15px;
-}
-nav ul li a {
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-nav ul li a:hover {
-    color: #0056b3;
+
+/* === Responsive Breakpoint === */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }

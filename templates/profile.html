@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>
-        profile
-    </h1>
-    
+<!-- templates/profile.html -->
+{% extends 'main.html' %}
 
-
-</body>
-</html>
+{% block content %}
+    <h2>Siz yuborgan muammolar</h2>
+    <ul>
+        {% for req in requests %}
+            <li>
+                <strong>{{ req.subject }}</strong> — {{ req.status }}
+                {% if req.status == 'solved' %}
+                    <br><i>Yechim:</i> {{ req.solution }}
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Siz hali muammo yubormagansiz.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

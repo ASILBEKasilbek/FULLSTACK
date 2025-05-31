@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import SupportRequest
 
 class RegisterForm(UserCreationForm):
     class Meta:
@@ -17,3 +18,8 @@ class RegisterForm(UserCreationForm):
             'password1': None,
             'password2': None,
         }
+
+class SupportRequestForm(forms.ModelForm):
+    class Meta:
+        model = SupportRequest
+        fields = ['subject', 'description']
