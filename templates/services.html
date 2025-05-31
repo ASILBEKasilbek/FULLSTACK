@@ -3,7 +3,7 @@
 
 {% block content %}
     <h2>Muammo yuborish</h2>
-    <form method="POST">
+    <form method="POST" class="issue-form">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Yuborish</button>

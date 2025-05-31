@@ -129,3 +129,65 @@ nav ul li a:hover {
         align-items: center;
     }
 }
+/* === Muammo Yuborish Form === */
+.issue-form {
+    /* background-color: rgba(0, 255, 0, 0.05); */
+    background-color: #000;
+    padding: 20px;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0f0;
+    margin-bottom: 30px;
+}
+
+.issue-form label {
+    color: #0f0;
+    display: block;
+    margin-bottom: 5px;
+    text-shadow: 0 0 5px #0f0;
+}
+.issue-form input::placeholder,
+.issue-form textarea::placeholder {
+    color: #6f6;
+    opacity: 1; /* Ba'zi brauzerlar uchun */
+    text-shadow: 0 0 3px #0f0;
+}
+
+.issue-form input[type="text"],
+.issue-form input[type="email"],
+.issue-form textarea,
+.issue-form select {
+    width: 100%;
+    padding: 10px;
+    background-color: #111;
+    color: #0f0;
+    border: 1px solid #0f0;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px #0f0;
+}
+
+.issue-form input:focus,
+.issue-form textarea:focus,
+.issue-form select:focus {
+    outline: none;
+    border-color: #6f6;
+    box-shadow: 0 0 8px #6f6;
+}
+
+.issue-form button {
+    background-color: #0f0;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px #0f0;
+}
+
+.issue-form button:hover {
+    background-color: #1f1;
+    box-shadow: 0 0 20px #3f3;
+}

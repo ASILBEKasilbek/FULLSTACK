@@ -18,8 +18,18 @@ class RegisterForm(UserCreationForm):
             'password1': None,
             'password2': None,
         }
-
 class SupportRequestForm(forms.ModelForm):
     class Meta:
         model = SupportRequest
         fields = ['subject', 'description']
+        widgets = {
+            'subject': forms.TextInput(attrs={
+                'placeholder': 'Muammo mavzusi',
+                'class': 'form-control'
+            }),
+            'description': forms.Textarea(attrs={
+                'placeholder': 'Muammo haqida batafsil yozing',
+                'class': 'form-control',
+                'rows': 4
+            }),
+        }
