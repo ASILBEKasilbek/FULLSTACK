@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yordamlar</title>
-    <!-- <link rel="stylesheet" href="{% static 'css/main.css' %}"> -->
     <link rel="stylesheet" href="{% static 'css/contact.css' %}">
-    
-
 </head>
 <body>
     <canvas id="matrix"></canvas>
@@ -36,15 +33,18 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-     <!-- home.html -->
-    <h2>Yaqinda hal bo‘lgan muammolar</h2>
-    <ul>
-        {% for req in solved %}
-            <li><strong>{{ req.user.username }}</strong> - {{ req.subject }} <br><i>{{ req.solution }}</i></li>
-        {% endfor %}
-    </ul>
-
-
+    <div class="solved-issues">
+        <h2>Yaqinda hal bo‘lgan muammolar</h2>
+        <ul>
+            {% for req in solved %}
+                <li>
+                    <strong>{{ req.user.username }}</strong>
+                    <span class="subject">{{ req.subject }}</span>
+                    <i>{{ req.solution }}</i>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

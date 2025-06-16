@@ -191,3 +191,73 @@ nav ul li a:hover {
     background-color: #1f1;
     box-shadow: 0 0 20px #3f3;
 }
+/* Solved Issues Section */
+.solved-issues {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: black;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #0f0; /* Yashil soya */
+}
+
+.solved-issues h2 {
+    text-align: center;
+    color: #0f0;
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 5px #0f0; /* Matnni ajratib ko‘rsatish uchun soya */
+}
+
+.solved-issues ul {
+    list-style: none;
+    padding: 0;
+}
+
+.solved-issues ul li {
+    background: rgba(0, 0, 0, 0.8); /* Har bir element uchun shaffof qora fon */
+    padding: 15px;
+    margin-bottom: 10px;
+    border-left: 4px solid #0f0; /* Chap tomonda yashil chiziq */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); /* Engil yashil soya */
+    transition: transform 0.2s ease-in-out;
+}
+
+.solved-issues ul li:hover {
+    transform: translateX(5px); /* Hoverda biroz siljish effekti */
+}
+
+.solved-issues ul li strong {
+    color: #6f6; /* Username uchun och yashil */
+    font-size: 1.2em;
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.solved-issues ul li span.subject {
+    color: #fff; /* Subject uchun oq rang */
+    font-weight: bold;
+    display: block;
+    margin: 5px 0;
+}
+
+.solved-issues ul li i {
+    color: #0f0; /* Solution uchun yashil */
+    font-style: italic;
+}
+
+/* Responsive dizayn */
+@media (max-width: 600px) {
+    .solved-issues {
+        padding: 15px;
+    }
+
+    .solved-issues h2 {
+        font-size: 1.5em;
+    }
+
+    .solved-issues ul li {
+        padding: 10px;
+    }
+}

@@ -6,6 +6,43 @@ from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm, SupportRequestForm
 from .models import SupportRequest, FAQ
 
+def home_view(request):
+    solved = SupportRequest.objects.filter(status='solved').order_by('-solved_at')[:10]
+    return render(request, 'main.html', {'solved': solved})
+
+
+@login_required
+def services_view(request):
+    form = SupportRequestForm()
+    if request.method == 'POST':
+        form = SupportRequestForm(request.POST)
+        if form.is_valid():
+            support = form.save(commit=False)
+            support.user = request.user
+            support.save()
+            return redirect('services')
+
+    user_requests = SupportRequest.objects.filter(user=request.user)
+    solved = user_requests.filter(status='solved')
+    pending = user_requests.filter(status='pending')
+
+    return render(request, 'services.html', {
+        'form': form,
+        'solved': solved,
+        'pending': pending,
+    })
+
+# Profil bo‘limi
+@login_required
+def profile_view(request):
+    user_requests = SupportRequest.objects.filter(user=request.user)
+    solved_requests = user_requests.filter(status='solved')
+    pending_requests = user_requests.exclude(status='solved')
+    return render(request, 'profile.html', {
+        'solved_requests': solved_requests,
+        'pending_requests': pending_requests,
+    })
+
 # Ro'yxatdan o'tish
 def register_view(request):
     if request.method == 'POST':
@@ -48,39 +85,3 @@ def yordamlar(request):
     return render(request, 'yordamlar.html', {'faqs': faqs})
 
 # Home sahifasida faqat hal qilingan muammolarni ko‘rsatish
-def home_view(request):
-    solved = SupportRequest.objects.filter(status='solved').order_by('-solved_at')[:10]
-    return render(request, 'main.html', {'solved': solved})
-
-# Xizmatlar (services) bo‘limi
-@login_required
-def services_view(request):
-    form = SupportRequestForm()
-    if request.method == 'POST':
-        form = SupportRequestForm(request.POST)
-        if form.is_valid():
-            support = form.save(commit=False)
-            support.user = request.user
-            support.save()
-            return redirect('services')
-
-    user_requests = SupportRequest.objects.filter(user=request.user)
-    solved = user_requests.filter(status='solved')
-    pending = user_requests.filter(status='pending')
-
-    return render(request, 'services.html', {
-        'form': form,
-        'solved': solved,
-        'pending': pending,
-    })
-
-# Profil bo‘limi
-@login_required
-def profile_view(request):
-    user_requests = SupportRequest.objects.filter(user=request.user)
-    solved_requests = user_requests.filter(status='solved')
-    pending_requests = user_requests.exclude(status='solved')
-    return render(request, 'profile.html', {
-        'solved_requests': solved_requests,
-        'pending_requests': pending_requests,
-    })

@@ -1,4 +1,3 @@
-<!-- templates/services.html -->
 {% extends 'main.html' %}
 
 {% block content %}
@@ -15,16 +14,17 @@
         {% for m in pending %}
             <li><strong>{{ m.subject }}</strong> — {{ m.created_at|date:"Y-m-d H:i" }}</li>
         {% empty %}
-            <li>Jarayondagi muammo yo‘q.</li>
+            <li>Jarayondagi muammo yo'q.</li>
         {% endfor %}
     </ul>
 
-    <h3>Hal bo‘lgan muammolar</h3>
+    <h3>Hal bo'lgan muammolar</h3>
     <ul>
         {% for m in solved %}
-            <li><strong>{{ m.subject }}</strong> — {{ m.solved_at|date:"Y-m-d H:i" }}<br><i>{{ m.solution }}</i></li>
+            <li><strong>{{ m.subject }}</strong> — {{ m.solved_at|date:"Y-m-d H:i" }}<br>
+                <i>{{ m.solution }}</i></li>
         {% empty %}
-            <li>Hozircha hal bo‘lgan muammo yo‘q.</li>
+            <li>Hozircha hal bo'lgan muammo yo'q.</li>
         {% endfor %}
     </ul>
 {% endblock %}

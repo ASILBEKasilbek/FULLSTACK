@@ -30,7 +30,7 @@
     </nav>
     <div class="container text-center mt-4">
         <h1>Yordamlar</h1>
-        <p>Kompyuter muammolaringizni o‘zingiz hal qilish uchun qo‘llanmalarni toping!</p>
+        <p>Kompyuter muammolaringizni o'zingiz hal qilish uchun qo'llanmalarni toping!</p>
     </div>
 
     <!-- Search Bar -->
@@ -53,14 +53,14 @@
                             <p class="video-title ">Video qo'llanma👇👇👇</p>
                             <video width="100%" controls aria-label="Video tutorial for {{ faq.question }}">
                                 <source src="{{ faq.video.url }}" type="video/mp4">
-                                Brauzeringiz video teglarini qo‘llab-quvvatlamaydi.
+                                Brauzeringiz video teglarini qo'llab-quvvatlamaydi.
                             </video>
                         {% endif %}
                     </div>
                 </div>
             {% empty %}
                 <div class="alert alert-info" role="alert">
-                    Hozircha yordam qo‘llanmalari mavjud emas. Keyinroq qayta urinib ko‘ring!
+                    Hozircha yordam qo'llanmalari mavjud emas. Keyinroq qayta urinib ko'ring!
                 </div>
             {% endfor %}
         </div>
